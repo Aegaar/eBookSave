@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 
-export const MainHeader = () => {
+export default function MainHeader() {
+  // TODO make a hamburger menu
   const [isOpen, setIsOpen] = useState(false);
 
   function hamburgerMenuHandler() {
@@ -13,10 +14,10 @@ export const MainHeader = () => {
 
   return (
     <header className="bg-white  ">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 border-b-2 border-black">
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 ">
         <div className="flex h-16 items-center justify-between ">
           <div className="md:flex md:items-center md:gap-12 overflow-hidden">
-            <Link className="block" href="#">
+            <Link className="block" href="/">
               <span className="sr-only">Home</span>
               <Image src="/logo.svg" width={70} height={70} alt="logo" />
             </Link>
@@ -28,7 +29,7 @@ export const MainHeader = () => {
                 <li>
                   <Link
                     className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
+                    href="/"
                   >
                     Home
                   </Link>
@@ -67,7 +68,7 @@ export const MainHeader = () => {
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
               <Link
-                className="rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-white shadow transition hover:bg-blue-500"
+                className="rounded-md  bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow transition hover:bg-blue-500"
                 href="/files"
               >
                 GET STARTED
@@ -100,4 +101,4 @@ export const MainHeader = () => {
       </div>
     </header>
   );
-};
+}
