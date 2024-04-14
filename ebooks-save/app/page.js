@@ -1,11 +1,11 @@
-import { MainHeader } from "@/components/main-header";
-import Banner from "@/components/banner";
+import Banner from "../components/banner";
+import { MainHeader } from "../components/main-header";
 
 export default function Home() {
   return (
     <>
       <MainHeader />
-      <Banner/>
+      <Banner />
     </>
   );
 }
