@@ -1,7 +1,16 @@
+"use client";
+
 import { Upload, FolderOpenDot } from "lucide-react";
 import Image from "next/image";
-import SideBarItem from "../_components/SideBarItem";
+import { useState } from "react";
 function SideBar() {
+  const [activeItem, setActiveItem] = useState(0);
+
+  function activeItemHandler(id) {
+    setActiveItem(id);
+    console.log(activeItem);
+  }
+
   const navbarItem = [
     {
       id: 1,
@@ -10,7 +19,7 @@ function SideBar() {
       path: "/upload",
     },
     {
-      id: 3,
+      id: 2,
       name: "Files",
       icon: FolderOpenDot,
       path: "/files",
@@ -18,17 +27,21 @@ function SideBar() {
   ];
 
   return (
-    <div>
-      <div className="p-5 border-b">
-        <Image src="/logo.svg" width={100} height={100} />
+    <div className="shadow-sm border-r h-full">
+      <div className="p-4 border-b">
+        <Image src="/logo.svg" width={60} height={60} />
       </div>
       <div className="flex flex-col float-left w-full">
         {navbarItem.map((item) => (
-        //   <SideBarItem item={item}/>
-        <button className="flex gap-2 p-4 px-6 hover:bg-gray-100  text-gray-500">
-        <item.icon />
-        <h2>{item.name}</h2>
-      </button>
+          <button
+            className={`flex gap-2 p-4 px-6 hover:bg-gray-100 w-full text-gray-500 ${
+              activeItem == item.id ? "bg-blue-50 text-primary" : null
+            }`}
+            onClick={() => activeItemHandler(item.id)}
+          >
+            <item.icon />
+            <h2>{item.name}</h2>
+          </button>
         ))}
       </div>
     </div>
