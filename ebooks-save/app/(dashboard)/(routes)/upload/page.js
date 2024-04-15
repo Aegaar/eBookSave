@@ -1,3 +1,5 @@
+'use client'
+
 import UploadForm from "./_components/UploadForm";
 
 function Upload() {

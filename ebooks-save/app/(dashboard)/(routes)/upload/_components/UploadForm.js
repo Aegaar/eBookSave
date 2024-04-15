@@ -1,7 +1,23 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import Alert from './Alert'
 
 function UploadForm() {
+  const [file, setFile] = useState();
+  const [errorMessage, setErrorMessage] = useState(false)
+
+  function onFileSelect(file) {
+    console.log(file)
+    // setFile(file)
+
+    if(file&&file.size>4000000){
+        setErrorMessage(true)
+        return
+    }
+    setErrorMessage(false)
+    setFile(file)
+  }
+
   return (
     <>
       <div className="relative  flex items-center justify-center">
@@ -55,18 +71,24 @@ function UploadForm() {
                       from your computer
                     </p>
                   </div>
-                  <input type="file" className="hidden" />
+                  <input
+                    type="file"
+                    className="hidden"
+                    onChange={(event) => onFileSelect(event.target.files[0])}
+                  />
                 </label>
               </div>
             </div>
             <p className="text-sm text-gray-300">
-              //TODO change this formats
-              <span>File type: doc,pdf,types of images</span>
+              {/* //TODO change this formats */}
+              <span>File type: doc,pdf,types of images MAX size 4MB</span>
             </p>
+            {errorMessage && <Alert message={'The size of the selected file is too large(Max 4MB)'}/>}
             <div>
               <button
+                disabled={!file}
                 className="my-5 w-full flex justify-center bg-blue-500 text-gray-100 p-4  rounded-full tracking-wide
-                                    font-semibold  focus:outline-none focus:shadow-outline hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300"
+                font-semibold  focus:outline-none focus:shadow-outline hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300 disabled:bg-gray-400"
               >
                 Upload
               </button>
