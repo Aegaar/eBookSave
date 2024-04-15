@@ -29,11 +29,11 @@ function SideBar() {
   return (
     <div className="shadow-sm border-r h-full">
       <div className="p-4 border-b">
-        <Image src="/logo.svg" width={60} height={60} />
+        <Image src="/logo.svg" width={60} height={60} alt='logo'/>
       </div>
       <div className="flex flex-col float-left w-full">
         {navbarItem.map((item) => (
-          <button
+          <button key={item.id}
             className={`flex gap-2 p-4 px-6 hover:bg-gray-100 w-full text-gray-500 ${
               activeItem == item.id ? "bg-blue-50 text-primary" : null
             }`}

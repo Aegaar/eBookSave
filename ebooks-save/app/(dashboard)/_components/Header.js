@@ -6,7 +6,7 @@ function Header() {
   return (
     <header className="flex p-6 border-b items-center justify-between md:justify-end">
       <Menu className="md:hidden" />
-      <Image src="/logo.svg" width={60} height={60} className="md:hidden" />
+      <Image src="/logo.svg" width={60} height={60} className="md:hidden" alt="logo" />
       <UserButton />
     </header>
   );
