@@ -1,21 +1,24 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import Alert from './Alert'
+import Alert from "./Alert";
+import FilePreview from "./FilePreview";
 
 function UploadForm() {
   const [file, setFile] = useState();
-  const [errorMessage, setErrorMessage] = useState(false)
+  const [errorMessage, setErrorMessage] = useState(false);
 
   function onFileSelect(file) {
-    console.log(file)
-    // setFile(file)
-
-    if(file&&file.size>4000000){
-        setErrorMessage(true)
-        return
+    if (file && file.size > 4000000) {
+      setErrorMessage(true);
+      return;
     }
-    setErrorMessage(false)
-    setFile(file)
+    setErrorMessage(false);
+    setFile(file);
+  }
+
+  function removeFileHandler() {
+    setErrorMessage(false);
+    setFile(null);
   }
 
   return (
@@ -83,7 +86,14 @@ function UploadForm() {
               {/* //TODO change this formats */}
               <span>File type: doc,pdf,types of images MAX size 4MB</span>
             </p>
-            {errorMessage && <Alert message={'The size of the selected file is too large(Max 4MB)'}/>}
+            {errorMessage && (
+              <Alert
+                message={"The size of the selected file is too large(Max 4MB)"}
+              />
+            )}
+            {file && (
+              <FilePreview file={file} onRemoveFile={removeFileHandler} />
+            )}
             <div>
               <button
                 disabled={!file}
