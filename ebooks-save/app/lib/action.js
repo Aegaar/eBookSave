@@ -26,17 +26,17 @@ export async function saveBook(prevState, formData) {
     };
   }
 
-//   TODO add better validation and errors
+  //   TODO add better validation and errors
 
-//   if(isInvalidText(eBook.title)) {
-//     return {
-//         message: "The title of the eBook cannot be empty",
-//       };
-//   }
+  //   if(isInvalidText(eBook.title)) {
+  //     return {
+  //         message: "The title of the eBook cannot be empty",
+  //       };
+  //   }
 
   // console.log(eBook);
   await saveBookToDB(eBook);
 
   revalidatePath("/upload");
-  // redirect("/files");
+  redirect("/files");
 }

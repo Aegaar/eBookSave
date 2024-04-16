@@ -8,7 +8,27 @@ const s3 = new S3({
 
 const db = sql("books.db");
 
-exports.saveBookToDB = async function (book) {
+export function getBooks() {
+  // throw new Error("loading meals failed");
+  return db.prepare("SELECT * FROM books").all();
+}
+
+export function getBook(slug){
+  return db.prepare("SELECT * FROM books WHERE slug= ?").get(slug);
+}
+
+//TODO repair downloading files form aws
+
+export function getBookFile(file){
+    const downloadUrl = s3.getSignedUrl('getObject', {
+      Bucket: 'ebook-save',
+      Key: file,
+    });
+
+    return downloadUrl
+}
+
+export async function saveBookToDB(book) {
   book.slug = slugify(book.title, { lower: true });
   const extension = book.file.name.split(".").pop();
   const fileName = `${book.slug}.${extension}`;

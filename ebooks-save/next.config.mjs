@@ -4,7 +4,7 @@
 // export default nextConfig;
 
 const nextConfig = {
-  images: {
+  files: {
     remotePatterns: [
       {
         protocol: "https",
