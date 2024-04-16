@@ -5,7 +5,7 @@ import { ALargeSmall, X } from "lucide-react";
 import { useState } from "react";
 import Alert from "./Alert";
 
-function FilePreview({ label, name }) {
+function FilePreview() {
   const [pickedFile, setPickedFile] = useState();
   const [error, setError] = useState(false)
 
@@ -58,10 +58,11 @@ function FilePreview({ label, name }) {
             name="file"
             accept=".epub, .mobi, .pdf, .docx, .fb2, .az2, .txt"
             onChange={(event) => selectFileHandler(event.target.files[0])}
+            required
           />
         </label>
       </div>
-      {error && <Alert/>}
+      {error && <Alert message={'file size is to big(MAX 4MB)'}/>}
       {pickedFile && (
         <div className="flex items-center gap-2 justify-between mt-5 border rounded-md p-2 border-blue-200 ">
           <div className="flex item-center p-2">
