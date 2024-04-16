@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { saveBookToDB } from "./books";
 
 function isInvalidText(text) {
   return !text || text.trim() === "";
@@ -33,9 +34,9 @@ export async function saveBook(prevState, formData) {
 //       };
 //   }
 
-  console.log(eBook);
-  // await saveBook(eBook);
+  // console.log(eBook);
+  await saveBookToDB(eBook);
 
   revalidatePath("/upload");
-  redirect("/files");
+  // redirect("/files");
 }
