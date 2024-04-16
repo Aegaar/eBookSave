@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 
 import UploadForm from "./_components/UploadForm";
 
